@@ -9,6 +9,10 @@ public class RetiradaNoLocal implements ModalidadeEntrega {
 
     @Override
     public String getNome() {
+<<<<<<< HEAD
         return "Fazer retirada no Local";
+=======
+        return "Retirada no Local";
+>>>>>>> origin/master
     }
 }

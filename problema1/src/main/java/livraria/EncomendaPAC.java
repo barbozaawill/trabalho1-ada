@@ -12,7 +12,11 @@ public class EncomendaPAC implements ModalidadeEntrega {
             return 15.00;
         } else {
             throw new IllegalArgumentException(
+<<<<<<< HEAD
                 "Encomenda PAC nÃ£o aceita pedidos acima de 2 kg. Peso atual: " + pesoGramas + "g"
+=======
+                "Encomenda PAC não aceita pedidos acima de 2 kg. Peso atual: " + pesoGramas + "g"
+>>>>>>> origin/master
             );
         }
     }

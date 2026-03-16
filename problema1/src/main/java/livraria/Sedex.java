@@ -19,6 +19,10 @@ public class Sedex implements ModalidadeEntrega {
 
     @Override
     public String getNome() {
+<<<<<<< HEAD
         return "Entrega Sedex";
+=======
+        return "Sedex";
+>>>>>>> origin/master
     }
 }
