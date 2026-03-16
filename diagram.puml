@@ -1,0 +1,53 @@
+@startuml
+package livraria {
+  interface ModalidadeEntrega {
+    +calcularFrete(pedido: Pedido): double
+    +getNome(): String
+  }
+
+  class Produto {
+    -nome: String
+    -valor: double
+    -peso: double
+    +Produto(nome: String, valor: double, peso: double)
+    +getNome(): String
+    +getValor(): double
+    +getPeso(): double
+  }
+
+  class Pedido {
+    -produtos: List<Produto>
+    +Pedido()
+    +adicionarProduto(produto: Produto): void
+    +getProdutos(): List<Produto>
+    +getPesoTotal(): double
+    +getValorTotal(): double
+  }
+
+  class EncomendaPAC {
+    +calcularFrete(pedido: Pedido): double
+    +getNome(): String
+  }
+
+  class Sedex {
+    +calcularFrete(pedido: Pedido): double
+    +getNome(): String
+  }
+
+  class RetiradaNoLocal {
+    +calcularFrete(pedido: Pedido): double
+    +getNome(): String
+  }
+
+  class CalculadoraFrete {
+    +calcular(pedido: Pedido, modalidade: ModalidadeEntrega): double
+  }
+
+  Pedido "1" o-- "*" Produto
+  ModalidadeEntrega <|.. EncomendaPAC
+  ModalidadeEntrega <|.. Sedex
+  ModalidadeEntrega <|.. RetiradaNoLocal
+  CalculadoraFrete ..> ModalidadeEntrega
+  CalculadoraFrete ..> Pedido
+}
+@enduml
