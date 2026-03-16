@@ -3,7 +3,7 @@ package livraria;
 public class Produto {
     private String nome;
     private double valor;
-    private double peso; // pedido em gramas 
+    private double peso; // pedido em g 
 
     public Produto(String nome, double valor, double peso) {
         this.nome = nome;
