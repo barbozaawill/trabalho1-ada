@@ -1,0 +1,58 @@
+@startuml
+package bolsa {
+  interface Observer {
+    +update(acaoNome: String, novoValor: double): void
+  }
+
+  interface Observable {
+    +registrarObserver(observer: Observer): void
+    +removerObserver(observer: Observer): void
+    +notificarObservers(): void
+  }
+
+  enum TipoOrdem {
+    COMPRA 
+    VENDA
+  }
+
+  class Ordem {
+    -nomeInvestidor: String
+    -tipo: TipoOrdem
+    -valor: double
+    +Ordem(nomeInvestidor: String, tipo: TipoOrdem, valor: double)
+    +getNomeInvestidor(): String
+    +getTipo(): TipoOrdem
+    +getValor(): double
+  }
+
+  class Acao {
+    -nome: String
+    -valor: double
+    -ordens: List~Ordem~
+    -observers: List~Observer~
+    +Acao(nome: String, valorInicial: double)
+    +registrarOrdem(novaOrdem: Ordem): void
+    +getNome(): String
+    +getValor(): double
+    +getOrdens(): List~Ordem~
+    +getObservers(): List~Observer~
+  }
+
+  class Investidor {
+    -nome: String
+    +Investidor(nome: String)
+    +registrarOrdem(acao: Acao, tipo: TipoOrdem, valor: double): void
+    +assinarAcao(acao: Acao): void
+    +cancelarAssinaturaAcao(acao: Acao): void
+    +update(acaoNome: String, novoValor: double): void
+    +getNome(): String
+  }
+
+  Acao "1" o-- "0..*" Ordem
+  Observable <|.. Acao
+  Observer <|.. Investidor
+  Acao ..> Observer
+  Investidor ..> Acao
+  Ordem ..> TipoOrdem
+}
+@enduml
