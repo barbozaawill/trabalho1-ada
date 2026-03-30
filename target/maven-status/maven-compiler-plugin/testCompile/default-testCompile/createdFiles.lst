@@ -1,0 +1,7 @@
+br\furb\iot\adaptador\ArCondicionadoAdaptadorVentoBaumnTest.class
+br\furb\iot\fachada\CasaInteligenteTest.class
+br\furb\iot\adaptador\ArCondicionadoAdaptadorGellaKazaTest.class
+br\furb\iot\adaptador\PersianaAdaptadorSolariusTest.class
+br\furb\iot\adaptador\LampadaAdaptadorPhelippesTest.class
+br\furb\iot\adaptador\LampadaAdaptadorShoyouMiTest.class
+br\furb\iot\adaptador\PersianaAdaptadorNatLightTest.class

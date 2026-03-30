@@ -1,0 +1,159 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+left to right direction
+
+' =================== INTERFACES ===================
+
+interface Persiana {
+    + abrir(): void
+    + fechar(): void
+}
+
+interface Lampada {
+    + ligar(): void
+    + desligar(): void
+}
+
+interface ArCondicionado {
+    + ligar(): void
+    + desligar(): void
+    + aumentarTemperatura(): void
+    + diminuirTemperatura(): void
+    + definirTemperatura(temperatura: int): void
+}
+
+' =================== ADAPTADORES ===================
+
+class PersianaAdaptadorSolarius {
+    + abrir(): void
+    + fechar(): void
+}
+
+class PersianaAdaptadorNatLight {
+    - palhetaAberta: boolean
+    - palhetaErguida: boolean
+    + abrir(): void
+    + fechar(): void
+}
+
+class LampadaAdaptadorShoyouMi {
+    + ligar(): void
+    + desligar(): void
+}
+
+class LampadaAdaptadorPhelippes {
+    + ligar(): void
+    + desligar(): void
+}
+
+class ArCondicionadoAdaptadorVentoBaumn {
+    - temperaturaAtual: int
+    + ligar(): void
+    + desligar(): void
+    + aumentarTemperatura(): void
+    + diminuirTemperatura(): void
+    + definirTemperatura(temperatura: int): void
+}
+
+class ArCondicionadoAdaptadorGellaKaza {
+    - temperaturaAtual: int
+    + ligar(): void
+    + desligar(): void
+    + aumentarTemperatura(): void
+    + diminuirTemperatura(): void
+    + definirTemperatura(temperatura: int): void
+}
+
+' =================== FACHADA ===================
+
+class CasaInteligente {
+    - persianas: List<Persiana>
+    - lampadas: List<Lampada>
+    - arsCondicionados: List<ArCondicionado>
+    + adicionarPersiana(persiana: Persiana): void
+    + adicionarLampada(lampada: Lampada): void
+    + adicionarArCondicionado(arCondicionado: ArCondicionado): void
+    + modoSono(): void
+    + modoTrabalho(): void
+}
+
+' =================== BIBLIOTECA ===================
+
+class PersianaSolarius {
+    - aberta: boolean
+    + subirPersiana(): void
+    + descerPersiana(): void
+    + estaAberta(): boolean
+}
+
+class PersianaNatLight {
+    - palhetaAberta: boolean
+    - palhetaErguida: boolean
+    + abrirPalheta(): void
+    + fecharPalheta(): void
+    + subirPalheta(): void
+    + descerPalheta(): void
+    + estaPalhetaAberta(): boolean
+    + estaPalhetaErguida(): boolean
+}
+
+class LampadaShoyuMi {
+    - ligada: boolean
+    + ligar(): void
+    + desligar(): void
+    + estaLigada(): boolean
+}
+
+class LampadaPhellipes {
+    - intensidade: int
+    + setIntensidade(intensidade: int): void
+    + getIntensidade(): int
+}
+
+class ArCondicionadoVentoBaumn {
+    - ligado: boolean
+    - temperatura: int
+    + ligar(): void
+    + desligar(): void
+    + definirTemperatura(temperatura: int): void
+    + getTemperatura(): int
+    + estaLigado(): boolean
+}
+
+class ArCondicionadoGellaKaza {
+    - ligado: boolean
+    - temperatura: int
+    + ativar(): void
+    + desativar(): void
+    + aumentarTemperatura(): void
+    + diminuirTemperatura(): void
+    + getTemperatura(): int
+    + estaLigado(): boolean
+}
+
+' =================== RELAÇÕES ===================
+
+' Adaptadores realizam interfaces
+PersianaAdaptadorSolarius         ..|> Persiana
+PersianaAdaptadorNatLight         ..|> Persiana
+LampadaAdaptadorShoyouMi          ..|> Lampada
+LampadaAdaptadorPhelippes         ..|> Lampada
+ArCondicionadoAdaptadorVentoBaumn ..|> ArCondicionado
+ArCondicionadoAdaptadorGellaKaza  ..|> ArCondicionado
+
+' Adaptadores associam classes da biblioteca
+PersianaAdaptadorSolarius         --> PersianaSolarius
+PersianaAdaptadorNatLight         --> PersianaNatLight
+LampadaAdaptadorShoyouMi          --> LampadaShoyuMi
+LampadaAdaptadorPhelippes         --> LampadaPhellipes
+ArCondicionadoAdaptadorVentoBaumn --> ArCondicionadoVentoBaumn
+ArCondicionadoAdaptadorGellaKaza  --> ArCondicionadoGellaKaza
+
+' Fachada agrega as interfaces
+CasaInteligente o-- "0..*" Persiana
+CasaInteligente o-- "0..*" Lampada
+CasaInteligente o-- "0..*" ArCondicionado
+
+@enduml

@@ -1,0 +1,10 @@
+br\furb\iot\adaptador\PersianaAdaptadorNatLight.class
+br\furb\iot\adaptador\LampadaAdaptadorPhelippes.class
+br\furb\iot\adaptador\LampadaAdaptadorShoyouMi.class
+br\furb\iot\fachada\CasaInteligente.class
+br\furb\iot\dispositivo\Persiana.class
+br\furb\iot\adaptador\ArCondicionadoAdaptadorGellaKaza.class
+br\furb\iot\adaptador\PersianaAdaptadorSolarius.class
+br\furb\iot\adaptador\ArCondicionadoAdaptadorVentoBaumn.class
+br\furb\iot\dispositivo\ArCondicionado.class
+br\furb\iot\dispositivo\Lampada.class
